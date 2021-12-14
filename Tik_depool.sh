@@ -104,6 +104,9 @@ function Make_BOC_file(){
 ##############################################################################
 Last_Trans_lt=$(Get_Account_Info ${Depool_addr} | awk '{print $3}')
 #
+ Depool_Rounds_Info="$(Get_DP_Rounds $Depool_addr)"
+    Curr_Rounds_Info="$(Rounds_Sorting_by_ID "$Depool_Rounds_Info")"
+    Curr_DP_Elec_ID=$(( $(echo "$Curr_Rounds_Info" |jq -r '.[1].supposedElectedAt'| xargs printf "%d\n") ))
 if [[ $elections_id -ne $Curr_DP_Elec_ID ]] && [[ $elections_id -gt 0 ]]; then
 #
 function Send_Tik(){
@@ -125,7 +128,7 @@ function Send_Tik(){
     echo $Attempts_to_send
 
 }    
-else
+fi
 echo "Depool has been ticked yet"
 exit 1
 #
