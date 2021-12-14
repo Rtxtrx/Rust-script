@@ -123,12 +123,12 @@ function Send_Tik(){
         fi
     done
     echo $Attempts_to_send
-#    
-fi
+
+}    
+else
+echo "Depool has been ticked yet"
 exit 1
 #
-}
-
 for (( TryToSetEl=0; TryToSetEl <= 5; TryToSetEl++ ))
 do
     echo -n "INFO: Make boc for lite-client ..."
