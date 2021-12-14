@@ -164,7 +164,7 @@ else
     date +"INFO: %F %T %Z DePool is set for current elections." | tee -a "${ELECTIONS_WORK_DIR}/${elections_id}.log"
    #
    "${SCRIPT_DIR}/Send_msg_toTelBot.sh" "$HOSTNAME Server: DePool:" \
-        "Depool set to curent election. Current elections ID from elector $elections_id ($(TD_unix2human $elections_id)) is equal elections ID from DePool: $Curr_DP_Elec_ID ($(TD_unix2human $Curr_DP_Elec_ID))" 2>&1 > /dev/null
+        "$Tg_CheckMark Depool set to curent election. Current elections ID from elector $elections_id ($(TD_unix2human $elections_id)) is equal elections ID from DePool: $Curr_DP_Elec_ID ($(TD_unix2human $Curr_DP_Elec_ID))" 2>&1 > /dev/null
    #
     echo "INFO $elections_id" > "${prepElections}"
 fi
