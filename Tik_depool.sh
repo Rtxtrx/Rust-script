@@ -7,6 +7,11 @@ SCRIPT_DIR=`cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P`
 source "${SCRIPT_DIR}/env.sh"
 source "${SCRIPT_DIR}/functions.shinc"
 
+###################
+TIMEDIFF_MAX=100
+SLEEP_TIMEOUT=20
+SEND_ATTEMPTS=3
+###################
 #===============================================
 # Check node sync
 TIME_DIFF=$(Get_TimeDiff)
