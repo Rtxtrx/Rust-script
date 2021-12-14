@@ -108,7 +108,8 @@ Last_Trans_lt=$(Get_Account_Info ${Depool_addr} | awk '{print $3}')
     Curr_Rounds_Info="$(Rounds_Sorting_by_ID "$Depool_Rounds_Info")"
     Curr_DP_Elec_ID=$(( $(echo "$Curr_Rounds_Info" |jq -r '.[1].supposedElectedAt'| xargs printf "%d\n") ))
 if [[ $elections_id -ne $Curr_DP_Elec_ID ]] && [[ $elections_id -gt 0 ]]; then
-#
+
+echo "Election Id: $elections_id in Depool $Curr_DP_Elec_ID"
 function Send_Tik(){
     local Attempts_to_send=$SEND_ATTEMPTS
     while [[ $Attempts_to_send -gt 0 ]]; do
@@ -128,9 +129,10 @@ function Send_Tik(){
     echo $Attempts_to_send
 
 }    
-fi
+else
 echo "Depool has been ticked yet"
 exit 1
+fi
 #
 for (( TryToSetEl=0; TryToSetEl <= 5; TryToSetEl++ ))
 do
