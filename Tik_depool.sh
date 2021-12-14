@@ -103,7 +103,9 @@ function Make_BOC_file(){
 ################  Send TIK query to DePool ###################################
 ##############################################################################
 Last_Trans_lt=$(Get_Account_Info ${Depool_addr} | awk '{print $3}')
-
+#
+if [[ $elections_id -ne $Curr_DP_Elec_ID ]] && [[ $elections_id -gt 0 ]]; then
+#
 function Send_Tik(){
     local Attempts_to_send=$SEND_ATTEMPTS
     while [[ $Attempts_to_send -gt 0 ]]; do
@@ -121,6 +123,10 @@ function Send_Tik(){
         fi
     done
     echo $Attempts_to_send
+#    
+fi
+exit 1
+#
 }
 
 for (( TryToSetEl=0; TryToSetEl <= 5; TryToSetEl++ ))
